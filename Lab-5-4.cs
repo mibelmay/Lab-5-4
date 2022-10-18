@@ -8,20 +8,25 @@ namespace Labs
         public static void Main()
         {
             string[] numbers = GetArray();
+
         }
 
         public static string[] GetArray()
         {
-            List<string> numbers = new List<string>();
+            List<string> list = new List<string>();
             Console.WriteLine("Введите массив. Чтобы закончить ввод, введите букву q");
 
-            while (true)
+            bool flag = true;
+            while (flag)
             {
                 string input = Console.ReadLine();
-                if (!(input == "q"))
-                    numbers.Add(input);
+                if (input != "q")
+                    list.Add(input);
+                else flag = false;
             }
 
+            string[] result = list.ToArray();
+            return result;
 
         }
     }
