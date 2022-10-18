@@ -8,9 +8,14 @@ namespace Labs
         public static void Main()
         {
             string[] numbers = GetArray();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Старый массив: ");
+            foreach (string number in numbers)
+                Console.Write($"{number} ");
             string[] newNumbers = ChangeArray(numbers);
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Новый массив:");
+            Console.WriteLine("");
+            Console.WriteLine("Новый массив: ");
             foreach (string number in newNumbers)
                 Console.Write($"{number} ");
         }
@@ -42,13 +47,12 @@ namespace Labs
                     continue;
                 }
 
-                if (double.TryParse(numbers[i], out double doubleNumber))
+                if (double.TryParse(numbers[i], out double doubleNumber) && !(int.TryParse(numbers[i], out int intNum)))
                 {
                     string roundedNum = string.Format($"{doubleNumber:0.00}", doubleNumber);
-                    //string roundedNum = Math.Round(doubleNumber, 2, MidpointRounding.AwayFromZero).ToString();
                     string[] parts = roundedNum.Split(',');
                     if (parts[1][0] == '0')
-                        newList[i] = (double.Parse(roundedNum) % 10).ToString();
+                        newList[i] = parts[1][1].ToString();
                     else
                         newList[i] = parts[1];
                 }
