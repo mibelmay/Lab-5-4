@@ -9,6 +9,8 @@ namespace Labs
         {
             string[] numbers = GetArray();
             string[] newNumbers = ChangeArray(numbers);
+            foreach (string number in newNumbers)
+                Console.Write($"{number} ");
         }
 
         public static string[] GetArray()
@@ -29,20 +31,24 @@ namespace Labs
 
         public static string[] ChangeArray(string[] numbers)
         {
-            List<string> list = new List<string>();
-            for (int i = 0; i < list.Count; i++)
+            List<string> newList = numbers.ToList();
+            for (int i = 0; i < numbers.Length; i++)
             {
                 if (int.TryParse(numbers[i], out int intNumber))
                 {
                     if (intNumber > 0)
-                        list[i] = GetFactorial(intNumber).ToString();
+                        newList[i] = GetFactorial(intNumber).ToString();
                 }
             }
+            return newList.ToArray();
         }
 
         public static int GetFactorial(int num)
         {
-
+            int factorial = 1;
+            for (int i = 2; i <= num; i++)
+                factorial *= i;
+            return factorial;
         }
     }
 }
