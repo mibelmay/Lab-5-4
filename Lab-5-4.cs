@@ -9,6 +9,8 @@ namespace Labs
         {
             string[] numbers = GetArray();
             string[] newNumbers = ChangeArray(numbers);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Новый массив:");
             foreach (string number in newNumbers)
                 Console.Write($"{number} ");
         }
@@ -34,12 +36,24 @@ namespace Labs
             List<string> newList = numbers.ToList();
             for (int i = 0; i < numbers.Length; i++)
             {
-                if (int.TryParse(numbers[i], out int intNumber))
+                if (int.TryParse(numbers[i], out int intNumber) && (intNumber > 0))
                 {
-                    if (intNumber > 0)
-                        newList[i] = GetFactorial(intNumber).ToString();
+                    newList[i] = GetFactorial(intNumber).ToString();
+                    continue;
+                }
+
+                if (double.TryParse(numbers[i], out double doubleNumber))
+                {
+                    string roundedNum = string.Format($"{doubleNumber:0.00}", doubleNumber);
+                    //string roundedNum = Math.Round(doubleNumber, 2, MidpointRounding.AwayFromZero).ToString();
+                    string[] parts = roundedNum.Split(',');
+                    if (parts[1][0] == '0')
+                        newList[i] = (double.Parse(roundedNum) % 10).ToString();
+                    else
+                        newList[i] = parts[1];
                 }
             }
+
             return newList.ToArray();
         }
 
