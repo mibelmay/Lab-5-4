@@ -12,6 +12,7 @@ namespace Labs
             Console.WriteLine("Старый массив: ");
             foreach (string number in numbers)
                 Console.Write($"{number} ");
+
             string[] newNumbers = ChangeArray(numbers);
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("");
