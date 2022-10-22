@@ -8,13 +8,13 @@ namespace Labs
         public static void Main()
         {
             string[] numbers = GetArray();
-            Console.ForegroundColor = ConsoleColor.Yellow;
+
             Console.WriteLine("Старый массив: ");
             foreach (string number in numbers)
                 Console.Write($"{number} ");
 
             string[] newNumbers = ChangeArray(numbers);
-            Console.ForegroundColor = ConsoleColor.Green;
+
             Console.WriteLine("");
             Console.WriteLine("Новый массив: ");
             foreach (string number in newNumbers)
